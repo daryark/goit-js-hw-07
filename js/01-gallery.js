@@ -14,7 +14,7 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 const galleryContainer = document.querySelector(".gallery");
-galleryContainer.insertAdjacentHTML("beforeend", makeGallery(galleryItems));
+galleryContainer.innerHTML = makeGallery(galleryItems);
 galleryContainer.addEventListener("click", OnGalleryItemClick);
 
 function makeGallery(gallery) {
@@ -48,11 +48,11 @@ function OnGalleryItemClick(e) {
 	);
 	imgInstance.show();
 
-	window.addEventListener("keydown", (e) => {
-		if (e.code === "Escape") {
-			imgInstance.close();
-		}
-	});
+	if (imgInstance.visible()) {
+		window.addEventListener("keydown", (e) => {
+			if (e.code === "Escape") {
+				imgInstance.close();
+			}
+		});
+	}
 }
-
-console.log(galleryItems);
